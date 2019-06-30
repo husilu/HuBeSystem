@@ -1,0 +1,51 @@
+[
+  {
+    "icon": "ios-flag", 
+    "index": "/", 
+    "title": "首页"
+  }, 
+  {
+    "icon": "ios-navigate", 
+    "index": "2", 
+    "title": "学习中心", 
+    "subs": [
+      {
+        "index": "/xxzx-byxx", 
+        "title": "本月学习"
+      }, 
+      {
+        "index": "/xxzx-zssj", 
+        "title": "知识收集"
+      }, 
+      {
+        "index": "/jgzx-fwxq", 
+        "title": "服务需求"
+      }
+    ]
+  }, 
+  {
+    "icon": "ios-keypad", 
+    "index": "3", 
+    "title": "信息管理", 
+    "subs": [
+      {
+        "index": "/xxgl-nrgl", 
+        "title": "内容管理"
+      }, 
+      {
+        "index": "/xxgl-tjgl", 
+        "title": "推荐管理"
+      }
+    ]
+  }, 
+  {
+    "icon": "ios-folder", 
+    "index": "/fwgk", 
+    "title": "服务概况"
+  },
+  {
+    "index": "/test-page", 
+    "title": "测试页面",
+    "icon": "ios-bug-outline"
+  }
+]
