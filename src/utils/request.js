@@ -4,7 +4,7 @@ import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
 const instance = axios.create({
-  // baseURL: 'https://some-domain.com/api/'
+  baseURL: process.env.NODE_ENV === 'development' ? process.env.BASE_API : ''
 });
 
 instance.interceptors.request.use((config) => {

@@ -1,8 +1,8 @@
 import ajax from "@/utils/request";
 
 const urls = {
-	htsearch: "http://localhost:8880/ht_study",
-	jssearch: "http://localhost:8880/js_study"
+	htsearch: "/ht_study",
+	jssearch: "/js_study"
 };
 
 export default {

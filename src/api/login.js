@@ -1,7 +1,7 @@
 import ajax from "@/utils/request";
 
 const urls = {
-	login: "http://localhost:8880/login"
+	login: "/login"
 };
 
 export default {
