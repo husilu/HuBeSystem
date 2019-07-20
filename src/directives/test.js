@@ -1,8 +1,14 @@
-Vue.directive('test', {
-    bind: function(el, binding, vnode, oldVnode) {
-        //绑定指令时调用
+
+export default {
+  name: 'test',
+  directive: {
+    bind(el, { value, name }, vnode) {
+      // el._dragInstance = new Drag(el, value || {});
+      // console.log(value);
+      console.log(name);
     },
-    unbind: function() {
-        //指令解除绑定时调用
+    unbind(el) {
+      // el._dragInstance && el._dragInstance.destory();
     }
-})
+  }
+};

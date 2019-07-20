@@ -19,7 +19,7 @@
               Progress(:percent="10" status='normal' )
         Card(:bordered="false" shadow)
             p(slot='title') 求职意向
-            p 期望职位: 前端工程师
+            p(v-test='') 期望职位: 前端工程师
             p 工作技能: Vue
             p 目标城市: 成都
             p 入职时间: 随时入职

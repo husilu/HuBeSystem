@@ -13,7 +13,7 @@
 </template>
 
 <script>
-// import api from "@/api/login";
+import api from "@/api/login";
 export default {
   name: "Login",
   data() {
@@ -42,32 +42,25 @@ export default {
   },
   methods: {
     okHandler() {
-      let url = "http://localhost:8880/login";
+      // let url = "http://localhost:8880/login";
+      let obj = {
+        username: this.model.username,
+        password: this.model.password
+      };
       this.$refs["form"].validate(valid => {
         if (valid) {
           // let obj = {
           //   username: this.model.username,
           //   password: this.model.password
           // };
-          this.$axios
-            .post(url, {
-              username: this.model.username,
-              password: this.model.password
-            })
-            .then((res) => {
-              if (res.data.code === 0) {
-                localStorage.setItem('ms_user', res.data.data.userName);
-                this.$router.push("/");
-              } else {
-                 this.$Message.info(res.data.message);
-               }
-            })
-            .catch(function(error) {
-              console.log(error);
-            });
-          // api.login(obj).then(res => {
-
-          // });
+          api.login(obj).then(res => {
+            if (res.data.code === 0) {
+              localStorage.setItem("ms_user", res.data.data.userName);
+              this.$router.push("/");
+            } else {
+              this.$Message.info(res.data.message);
+            }
+          });
         } else {
           return false;
         }

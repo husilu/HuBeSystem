@@ -10,16 +10,16 @@
     "title": "学习中心", 
     "subs": [
       {
-        "index": "/xxzx-byxx", 
+        "index": "/xxzx/byxx", 
         "title": "本月学习"
       }, 
       {
-        "index": "/xxzx-zssj", 
+        "index": "/xxzx/zssj", 
         "title": "知识收集"
       }, 
       {
-        "index": "/jgzx-fwxq", 
-        "title": "服务需求"
+        "index": "/xxzx/sjsj", 
+        "title": "书籍收集"
       }
     ]
   }, 
@@ -29,11 +29,11 @@
     "title": "信息管理", 
     "subs": [
       {
-        "index": "/xxgl-nrgl", 
+        "index": "/xxgl/nrgl", 
         "title": "内容管理"
       }, 
       {
-        "index": "/xxgl-tjgl", 
+        "index": "/xxgl/tjgl", 
         "title": "推荐管理"
       }
     ]

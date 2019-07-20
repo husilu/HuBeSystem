@@ -17,7 +17,7 @@ export default {
   methods: {
     search() {
       api.jssearch().then(res => {
-        this.list = res.data.data;
+        this.list = res.data;
       });
     }
   }

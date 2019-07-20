@@ -12,6 +12,7 @@ import axios from './utils/request';
 import './assets/font/iconfont.css';
 // import { Message } from 'iview';
 // Vue.prototype.$Message = Message;
+import directives from './directives/index';
 
 Vue.prototype.$axios = axios;
 
@@ -20,6 +21,7 @@ Vue.config.productionTip = false;
 Vue.use(eventHub);
 Vue.use(iView);
 Vue.use(VueRouter);
+Vue.use(directives);
 
 const debug = process.env.NODE_ENV !== 'production';
 Vue.config.debug = debug;

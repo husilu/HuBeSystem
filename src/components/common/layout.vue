@@ -5,6 +5,9 @@
       <Layout class="flex-row">
         <long-menu :menu-list="menu" :collapsed="collapsed"></long-menu>
         <Layout>
+          <div class="bread-wrap">
+            <app-breadcrumb></app-breadcrumb>
+          </div>
           <slot></slot>
         </Layout>
       </Layout>
@@ -13,6 +16,7 @@
 </template>
 <script>
 // import _ from "lodash";
+import AppBreadcrumb from './app-breadcrumb';
 import menuJson from "@/assets/static/menu-data.json";
 import LongMenu from "./menu/long-menu";
 import MyHeader from "./header";
@@ -20,7 +24,8 @@ export default {
   name: "MyLayout",
   components: {
     LongMenu,
-    MyHeader
+    MyHeader,
+    AppBreadcrumb
   },
   data() {
     return {
@@ -53,6 +58,10 @@ export default {
   overflow: hidden;
 }
 .layout {
+  .bread-wrap {
+    padding: 10px 15px;
+    box-shadow: 0px 0 3px 2px rgba(100, 100, 100, 0.1) inset;
+  }
   .flex-row {
     flex-direction: row;
   }
