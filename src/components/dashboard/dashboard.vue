@@ -2,7 +2,7 @@
   div.dashboard
     Row(:gutter='16')
       Col(span=8)
-        Card.mb20(:bordered="false" shadow)
+        Card.mb20(:bordered="false" shadow v-cpt-drag='')
           div(class='flex')
             img(src='@/assets/timg.jpeg' class='user-pic')
             span {{username}}

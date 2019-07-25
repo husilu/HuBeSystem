@@ -1,11 +1,12 @@
 <template lang="pug">
   Modal.xxgl-nrgl-qr(v-model='visible' :title='title' ok-text='下载' @on-cancel='cancelHandler')
-    canvas(id="canvas" width="300" height="300")
-    canvas(id="imgcanvas" style="display:none")
-    div(slot='footer')
-      a(:href='downloadUrl' download = 'test')
-        Button(type='primary' @click='okHandler') 下载
-      Button(type='default' @click='cancelHandler') 取消
+    canvas(id="canvas" width="300" height="300" v-hsl-code:[codedata]='')
+    //- span {{codedata}}
+    //- canvas(id="imgcanvas" style="display:none")
+    //- div(slot='footer')
+    //-   a(:href='downloadUrl' download = 'test')
+    //-     Button(type='primary' @click='okHandler') 下载
+    //-   Button(type='default' @click='cancelHandler') 取消
 </template>
 
 <script>
@@ -24,13 +25,18 @@ export default {
     return {
       visible: false,
       title: "下载二维码",
-      downloadUrl: ""
+      downloadUrl: "",
+      codedata: {}
     };
   },
   methods: {
     show(row) {
       this.visible = true;
-      this.getCode(row);
+      // this.getCode(row);
+      // console.log(row);
+      this.codedata = row;
+      console.log(this.codedata);
+      // this.$set('data', 'codedata', row);
     },
     okHandler() {
       let wrapCanvas = convertCanvasToImage(document.getElementById("canvas"));

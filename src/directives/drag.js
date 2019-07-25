@@ -19,9 +19,10 @@ class Drag {
   bindEvents() {
     const el = this.target;
     this.handler.addEventListener('mousedown', ev => {
+      console.log(ev);
       if (ev.which === 1) {
         this.isDraging = true;
-        this.elx = ev.pageX - el.offsetLeft;
+        this.elx = ev.pageX - el.offsetLeft; // pageX以页面左上角开始 offsetLeft获取当前元素边缘尺寸
         this.ely = ev.pageY - el.offsetTop;
         this.callbacks.onDragStart && this.callbacks.onDragStart(ev, this.elx, this.ely);
       }
@@ -29,7 +30,7 @@ class Drag {
     el.addEventListener('mouseup', ev => {
       {
         this.isDraging = false;
-        const pos = this._getPosFromEvent(ev);
+        const pos = this._getPosFromEvent(ev); // 距离浏览器边框的位置
         this.callbacks.onDragEnd && this.callbacks.onDragEnd(ev, pos.x, pos.y);
       }
     });
@@ -44,7 +45,7 @@ class Drag {
     return false;
   }
   _getPosFromEvent(ev) {
-    return { x: ev.clientX - this.elx, y: ev.clientY - this.ely };
+    return { x: ev.clientX - this.elx, y: ev.clientY - this.ely }; // 会随着滚动条改变而改变
   }
   _positionTo(x, y) {
     this.target.style.left = x + 'px';
@@ -59,6 +60,7 @@ export default {
   name: 'cpt-drag',
   directive: {
     bind(el, { value }) {
+      // console.log(value);
       el._dragInstance = new Drag(el, value || {});
     },
     unbind(el) {

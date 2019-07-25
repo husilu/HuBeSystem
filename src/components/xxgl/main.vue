@@ -1,5 +1,5 @@
 <template lang="pug">
-    nrgl
+    router-view
 </template>
 <script>
 import nrgl from './nrgl';
