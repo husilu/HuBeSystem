@@ -134,11 +134,41 @@ http.createServer(function (req, res) {
 
     console.log("\n接口为：" + pathName);
 
-    if (pathName == "/getMessage") { // 获取留言信息
+    if (pathName == "/js_study") { // 获取js学习信息
+      let readSql = "SELECT * FROM new_schema.Js_study_table";
+      connection.query(readSql, function (error1, response1) {
+        if (error1) {
+          throw error1;
+        } else {
+          let newRes = JSON.parse(JSON.stringify(response1));
+          console.log(newRes);
+          res.write(JSON.stringify({
+            code: 0,
+            message: "success",
+            data: newRes
+          }));
+          res.end();
+        }
+      });
 
-      console.log("\n【API - 获取留言信息】");
-
-    } else if (pathName == "/") { // 首页
+    } else if(pathName == "/ht_study") {
+      let readSql = "SELECT * FROM new_schema.html_study_table";
+      connection.query(readSql, function (error1, response1) {
+        if (error1) {
+          throw error1;
+        } else {
+          let newRes = JSON.parse(JSON.stringify(response1));
+          console.log(newRes);
+          res.write(JSON.stringify({
+            code: 0,
+            message: "success",
+            data: newRes
+          }));
+          res.end();
+        }
+      });
+    }
+    else if (pathName == "/") { // 首页
       res.writeHead(200, {
         "Content-Type": "text/html;charset=UTF-8"
       });
@@ -150,7 +180,7 @@ http.createServer(function (req, res) {
 
   }
 
-}).listen(8888); // 监听的端口
+}).listen(8082); // 监听的端口
 
 // 获取当前时间
 function getNowFormatDate() {

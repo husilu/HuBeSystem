@@ -64,25 +64,29 @@ export default {
           name: "John Brown",
           age: 18,
           sex: "male",
-          address: "New York No. 1 Lake Park"
+          address: "New York No. 1 Lake Park",
+          url: "http://www.baidu.com"
         },
         {
           name: "Jim Green",
           age: 24,
           sex: "famale",
-          address: "London No. 1 Lake Park"
+          address: "London No. 1 Lake Park",
+          url: "http://www.baidu.com"
         },
         {
           name: "Joe Black",
           age: 30,
           sex: "male",
-          address: "Sydney No. 1 Lake Park"
+          address: "Sydney No. 1 Lake Park",
+          url: "http://www.baidu.com"
         },
         {
           name: "Jon Snow",
           age: 26,
           sex: "famale",
-          address: "Ottawa No. 2 Lake Park"
+          address: "Ottawa No. 2 Lake Park",
+          url: "http://www.baidu.com"
         }
       ]
     };

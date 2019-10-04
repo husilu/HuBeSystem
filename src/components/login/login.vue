@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     okHandler() {
-      // let url = "http://localhost:8880/login";
+      // let url = "http://localhost:8082/login";
       let obj = {
         username: this.model.username,
         password: this.model.password

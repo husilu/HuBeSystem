@@ -34,6 +34,7 @@ module.exports = {
         "allowFirstLine": false
       }
     }],
+    "vue/html-quotes": 0,
     "vue/html-self-closing": ["error", {
       "html": {
         "void": "never",

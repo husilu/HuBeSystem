@@ -62,9 +62,9 @@ export default {
     bind(el, { value }) {
       // console.log(value);
       el._dragInstance = new Drag(el, value || {});
-    },
-    unbind(el) {
-      el._dragInstance && el._dragInstance.destory();
     }
+    // unbind(el) {
+    //   el._dragInstance && el._dragInstance.destory();
+    // }
   }
 };
