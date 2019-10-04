@@ -11,6 +11,8 @@ class Code {
   _getImgCode() {
     var imgCanvas = document.createElement("canvas");
     let ctx = this.el.getContext("2d");
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillRect(0, 0, 500, 500);
     if (this.obj.url) {
       QRCode.toCanvas(
         imgCanvas,
@@ -36,7 +38,6 @@ class Code {
       }
       y = y + 30;
     });
-    ctx.stroke();
   }
   destory() {
     this.el._codeInstance = {};

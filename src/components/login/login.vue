@@ -54,8 +54,8 @@ export default {
           //   password: this.model.password
           // };
           api.login(obj).then(res => {
-            if (res.data.code === 0) {
-              localStorage.setItem("ms_user", res.data.data.userName);
+            if (res.code === 0) {
+              localStorage.setItem("ms_user", res.data.userName);
               this.$router.push("/");
             } else {
               this.$Message.info(res.data.message);
