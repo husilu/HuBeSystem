@@ -1,16 +1,17 @@
 <template lang="pug">
   div.xxgl-nrgl
     Button(type='primary' class='mb10' @click='editHandler') 新增数据
-    Table(:columns="columns1" :data="data1")
+    Table(:columns="columns1" :data="data1" :loading="loading")
     Edit(ref="edit" @on-saved="search")
     qr-code(ref='qrcode')
 </template>
 
 <script>
-import qrCode from './nrgl/qrcode';
-import _ from 'lodash';
+import qrCode from "./nrgl/qrcode";
+// import _ from "lodash";
 import Edit from "./nrgl/edit";
 import { Button } from "iview";
+import api from "@/api/xxgl.js";
 export default {
   name: "NrGl",
   components: {
@@ -19,6 +20,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       columns1: [
         {
           title: "姓名",
@@ -39,6 +41,7 @@ export default {
         {
           title: "操作",
           key: "actions",
+          width: "300",
           render: (h, { row, index }) => {
             return (
               <div>
@@ -48,7 +51,10 @@ export default {
                 >
                   编辑
                 </Button>
-                <Button on-click={this.cancelHandler.bind(this, row)}>
+                <Button
+                  class="mr10"
+                  on-click={this.deleteHandler.bind(this, row)}
+                >
                   删除
                 </Button>
                 <Button on-click={this.downloadHandler.bind(this, row)}>
@@ -59,47 +65,34 @@ export default {
           }
         }
       ],
-      data1: [
-        {
-          name: "John Brown",
-          age: 18,
-          sex: "male",
-          address: "New York No. 1 Lake Park",
-          url: "http://www.baidu.com"
-        },
-        {
-          name: "Jim Green",
-          age: 24,
-          sex: "famale",
-          address: "London No. 1 Lake Park",
-          url: "http://www.baidu.com"
-        },
-        {
-          name: "Joe Black",
-          age: 30,
-          sex: "male",
-          address: "Sydney No. 1 Lake Park",
-          url: "http://www.baidu.com"
-        },
-        {
-          name: "Jon Snow",
-          age: 26,
-          sex: "famale",
-          address: "Ottawa No. 2 Lake Park",
-          url: "http://www.baidu.com"
-        }
-      ]
+      data1: []
     };
   },
+  mounted() {
+    this.search();
+  },
   methods: {
+    search() {
+      this.loading = true;
+      api.search_nrgl().then(res => {
+        this.data1 = res.data;
+        this.loading = false;
+      });
+    },
     editHandler(row, index) {
       this.editIndex = index;
-      this.$refs.edit.show(row);
+      this.$refs.edit.show(row.id);
     },
-    cancelHandler() {},
-    search(data) {
-			this.$set(this.data1, this.editIndex, _.assign({}, data));
-			// this.data1[this.editIndex] = _.assign({}, data);
+    deleteHandler(row) {
+      this.$Modal.confirm({
+        title: "提示",
+        content: "确认删除吗？",
+        onOk: () => {
+          api.delete_nrgl(row.id).then(res => {
+            this.search();
+          });
+        }
+      });
     },
     downloadHandler(row) {
       this.$refs.qrcode.show(row);
