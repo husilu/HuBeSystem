@@ -2,7 +2,8 @@ import ajax from "@/utils/request";
 
 const urls = {
 	htsearch: "/ht_study",
-	jssearch: "/js_study"
+	jssearch: "/js_study",
+	banner: "/api/banner"
 };
 
 export default {
@@ -11,5 +12,8 @@ export default {
 	},
 	jssearch() {
 		return ajax.get(urls.jssearch, { notify: true });
-	}
+	},
+	banner() {
+		return ajax.get(urls.banner);
+	 }
 };

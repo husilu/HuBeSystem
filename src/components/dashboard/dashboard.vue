@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import api from "@/api/byxx";
 export default {
   data() {
     return {};
@@ -58,8 +59,16 @@ export default {
       return localStorage.getItem("ms_user");
     }
   },
-  mounted() {},
-  methods: {}
+  mounted() {
+    this.search();
+  },
+  methods: {
+    search() {
+      api.banner().then(res => {
+        console.log(res);
+      });
+    }
+  }
 };
 </script>
 

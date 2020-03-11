@@ -17,7 +17,9 @@ export default {
   methods: {
     search() {
       api.htsearch().then(res => {
-        this.list = res.data;
+        setTimeout(() => {
+          this.list = res.data;
+        }, 2000);
       });
     }
   }

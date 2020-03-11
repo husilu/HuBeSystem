@@ -58,7 +58,7 @@ http.createServer(function (req, res) {
 
       var result = JSON.stringify(qs.parse(tempResult));
 
-      if (pathName == "/add_nrgl") { // 提交留言信息
+      if (pathName == "/add_nrgl") { // 新增
 
         result = JSON.parse(result);
         let name = result.name; //
@@ -131,7 +131,7 @@ http.createServer(function (req, res) {
             // 存在用户处理结束
           }
         });
-      } else if (pathName == "/edit_nrgl") { // 注册
+      } else if (pathName == "/edit_nrgl") { // 编辑
 
         console.log("\n【API - 编辑内容管理】");
 
@@ -186,7 +186,7 @@ http.createServer(function (req, res) {
         }
       });
 
-    } else if (pathName == "/ht_study") {
+    } else if (pathName == "/ht_study") { // 获取html学习信息
       let readSql = "SELECT * FROM new_schema.html_study_table";
       connection.query(readSql, function (error1, response1) {
         if (error1) {
@@ -202,7 +202,7 @@ http.createServer(function (req, res) {
           res.end();
         }
       });
-    } else if (pathName == "/search_nrgl") {
+    } else if (pathName == "/search_nrgl") { // 获取内容管理
       let readSql = "SELECT * FROM new_schema.nrgl_table";
       connection.query(readSql, function (error1, response1) {
         if (error1) {
@@ -235,7 +235,7 @@ http.createServer(function (req, res) {
           res.end();
         }
       });
-    } else if (pathName == "/delete_nrgl/") {
+    } else if (pathName == "/delete_nrgl/") { // 删除内容管理
       let params = url.parse(req.url, true).query;
       let id = params.id;
       let delSql = 'DELETE FROM nrgl_table where id= ' + id;
