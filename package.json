@@ -10,15 +10,25 @@
     "e2e": "node test/e2e/runner.js",
     "test": "npm run e2e",
     "lint": "eslint --ext .js,.vue src test/e2e/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "node": "node app.js"
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "echarts": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
-    "iview": "^3.4.2",
+    "google": "^2.1.0",
+    "hls.js": "^0.12.4",
     "lodash": "^4.17.11",
+    "moment": "^2.24.0",
+    "videojs-contrib-hls": "^3.2.0",
+    "videojs-flash": "^2.1.0",
+    "view-design": "^4.0.2",
     "vue": "^2.5.2",
+    "vue-baidu-map": "^0.21.22",
     "vue-router": "^3.0.1",
+    "vue-video-player": "^5.0.2",
+    "vue2-google-maps": "^0.10.7",
     "vuex": "^3.1.1",
     "xf-cli": "^1.0.1"
   },

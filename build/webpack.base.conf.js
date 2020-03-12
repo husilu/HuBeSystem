@@ -4,7 +4,7 @@ const utils = require('./utils')
 const config = require('../config')
 const vueLoaderConfig = require('./vue-loader.conf')
 
-function resolve (dir) {
+function resolve(dir) {
   return path.join(__dirname, '..', dir)
 }
 
@@ -37,8 +37,13 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       store: resolve('src/store/modules'),
-      storejs: resolve('node_modules/store')
+      storejs: resolve('node_modules/store'),
+      'cpt-toolkit': resolve('cpt-toolkit')
     }
+  },
+  externals: {
+    'google': 'google',
+    "BMap": "BMap"
   },
   module: {
     rules: [

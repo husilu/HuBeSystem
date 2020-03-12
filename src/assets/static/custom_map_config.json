@@ -1,0 +1,49 @@
+[{
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": {
+        "visibility": "on"
+    }
+}, {
+    "featureType": "road",
+    "elementType": "labels",
+    "stylers": {
+        "visibility": "on"
+    }
+}, {
+    "featureType": "district",
+    "elementType": "labels",
+    "stylers": {
+        "visibility": "off"
+    }
+}, {
+    "featureType": "vacationway",
+    "elementType": "geometry",
+    "stylers": {
+        "visibility": "on"
+    }
+}, {
+    "featureType": "scenicspotslabel",
+    "elementType": "labels",
+    "stylers": {
+        "visibility": "off"
+    }
+}, {
+    "featureType": "transportationlabel",
+    "elementType": "labels",
+    "stylers": {
+        "visibility": "off"
+    }
+}, {
+    "featureType": "transportationlabel",
+    "elementType": "labels.icon",
+    "stylers": {
+        "visibility": "off"
+    }
+}, {
+    "featureType": "scenicspotslabel",
+    "elementType": "labels.icon",
+    "stylers": {
+        "visibility": "off"
+    }
+}]

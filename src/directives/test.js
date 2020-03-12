@@ -10,10 +10,12 @@ class Code {
   }
   _getImgCode() {
     var imgCanvas = document.createElement("canvas");
-    console.log(this.el);
     let ctx = this.el.getContext("2d");
-    console.log(this.obj);
-    if (this.obj.url) {
+    this.ctx = ctx;
+    ctx.fillStyle = "#fff";
+    ctx.fillRect(0, 0, 300, 300);
+    this.imgObj = imgCanvas;
+    if (this.obj.url && ctx) {
       QRCode.toCanvas(
         imgCanvas,
         this.obj.url,
@@ -24,13 +26,12 @@ class Code {
       );
       var image = new Image();
       image.src = imgCanvas.toDataURL("image/png");
-      console.log(this.el);
       image.onload = function () {
         ctx.drawImage(image, 50, 110, 168, 168);
       };
     }
-    ctx.fillStyle = "#000";
     ctx.font = "16px Arial";
+    ctx.fillStyle = "#000";
     let x = 10;
     let y = 20;
     Object.keys(this.obj).forEach(key => {
@@ -41,6 +42,9 @@ class Code {
     });
     ctx.stroke();
   }
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.imgObj.width, this.imgObj.height);
+  }
 }
 
 export { Code };
@@ -48,16 +52,17 @@ export default {
   name: 'hsl-code',
   directive: {
     bind(el, binding, vnode) {
-      // console.log(binding.arg);
       el._codeInstance = new Code(el, binding.arg || {});
     },
     unbind(el) {
-      // el._codeInstanc && el._codeInstance.destory();
     },
     update(el, binding, vnode) {
-      // console.log(el);
+      if (el._codeInstance) {
+        el._codeInstance.clearCanvas();
+      }
       if (binding.arg) {
         el._codeInstance = new Code(el, binding.arg || {});
+        // console.log(el);
       }
     }
   }

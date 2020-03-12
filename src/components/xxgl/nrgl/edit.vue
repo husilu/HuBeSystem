@@ -4,19 +4,18 @@
 			FormItem(label='姓名' prop='name')
 				Input(v-model='model.name' placeholder='请输入姓名')
 			FormItem(label='性别' prop='sex')
-				//- Select(v-model='model.sex' placeholder='请选择性别')
-				//- 	Option(value='male') male
-				//- 	Option(value='famale') famale
 			FormItem(label='年龄' prop='age')
 				Input(v-model='model.age' placeholder='请输入年龄')
 			FormItem(label='地址' prop='address')
-				Input(v-model='model.address' placeholder='请输入地址')
+				span {{shuju}}
 </template>
 
 <script>
 import _ from 'lodash';
+import formMixin from "@/mixin/form";
 export default {
   name: "NrglEdit",
+  mixins: [formMixin('我是数据')],
   data() {
     return {
 			visible: false,
@@ -26,7 +25,7 @@ export default {
   },
   methods: {
     show(data) {
-      console.log(data);
+      // console.log(data);
       if (data) {
         this.model = _.cloneDeep(data);
         this.title = "编辑";

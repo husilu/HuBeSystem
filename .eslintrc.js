@@ -19,29 +19,22 @@ module.exports = {
     'indent': ["off", "tab"],
     'no-trailing-spaces': 0,
     'generator-star-spacing': 0,
-    'no-debugger': 2,
+    'no-debugger': 0,
     semi: [2, 'always'], //语句强制分号结尾
     'space-before-function-paren': [0, 'always'],
     'no-return-assign': 0, //return 语句中不能有赋值表达式
     'one-var': 0,
     'no-cond-assign': 0,
     'vue/require-default-prop': 'off',
-    "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],
+    'vue/no-parsing-error': [2, { "x-invalid-end-tag": false }],
+    'vue/attributes-order': 0, // 忽略属性顺序
+    'vue/html-self-closing': 0, // 标签是否自闭和，这里允许不自闭和，即保留<div></div>
     "vue/max-attributes-per-line": ["error", {
       "singleline": 5,
       "multiline": {
         "max": 5,
         "allowFirstLine": false
       }
-    }],
-    "vue/html-self-closing": ["error", {
-      "html": {
-        "void": "never",
-        "normal": "never",
-        "component": "never"
-      },
-      "svg": "always",
-      "math": "always"
     }],
     "quotes": [0, ["double"]]
   }

@@ -1,24 +1,32 @@
 <template lang="pug">
   div.xxgl-nrgl
+    input(v-model='divval')
     Button(type='primary' class='mb10' @click='editHandler') 新增数据
+    Button(type='primary' class='mb10' @click='eventHandler') event测试
+    span {{ shuju }}
+    //- input(@input='v => func(val, v)' :value='divval')
     Table(:columns="columns1" :data="data1")
     Edit(ref="edit" @on-saved="search")
     qr-code(ref='qrcode')
 </template>
 
 <script>
-import qrCode from './nrgl/qrcode';
-import _ from 'lodash';
+import formMixin from "@/mixin/form";
+import qrCode from "./nrgl/qrcode";
+import _ from "lodash";
 import Edit from "./nrgl/edit";
-import { Button } from "iview";
+import { Button } from "view-design";
 export default {
   name: "NrGl",
   components: {
     Edit,
     qrCode
   },
+  mixins: [formMixin('我是数据123')],
   data() {
     return {
+      divval: 1,
+      params: [{ name: "rose" }, { name: "jack" }],
       columns1: [
         {
           title: "姓名",
@@ -88,14 +96,29 @@ export default {
     };
   },
   methods: {
+    eventHandler() {
+      console.log(event);
+    },
+    func(val, v) {
+      console.log(val);
+      console.log(v);
+    },
+    addHandler(params, row, index) {
+      console.log(params); // 这个params一般是外面的参数传递进来的
+      console.log(row);
+      console.log(index);
+    },
+    rowclick() {
+      console.log(event);
+    },
     editHandler(row, index) {
       this.editIndex = index;
       this.$refs.edit.show(row);
     },
     cancelHandler() {},
     search(data) {
-			this.$set(this.data1, this.editIndex, _.assign({}, data));
-			// this.data1[this.editIndex] = _.assign({}, data);
+      this.$set(this.data1, this.editIndex, _.assign({}, data));
+      // this.data1[this.editIndex] = _.assign({}, data);
     },
     downloadHandler(row) {
       this.$refs.qrcode.show(row);

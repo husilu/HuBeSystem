@@ -20,7 +20,7 @@ export default {
     };
   },
   mounted() {
-    // console.log('app')
+    // console.log('app');
   },
   methods: {
     toChangeMenu(name) {

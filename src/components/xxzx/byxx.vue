@@ -13,19 +13,22 @@
 import Ht from "./byxx/ht";
 import Js from "./byxx/js";
 export default {
-	name: "Byxx",
-	components: { Ht, Js },
+  name: "Byxx",
+  components: { Ht, Js },
   data() {
     return {
       val: "Html/Css"
     };
-	},
+  },
   computed: {
     month() {
       let Nowdate = new Date();
       return Nowdate.getMonth() + 1;
     }
   }
+  // mounted() {
+  //   console.log("compmounted");
+  // }
 };
 </script>
 <style lang='less'>

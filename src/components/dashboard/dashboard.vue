@@ -8,6 +8,7 @@
             span {{username}}
         Card.mb20(:bordered="false" shadow)
             p(slot='title') 语言详情
+              my-button(type='primary' msg="下载")
             p
               span Vue
               Progress(:percent="70" status='normal' stroke-color='rgb(66, 185, 131)')
@@ -19,7 +20,7 @@
               Progress(:percent="10" status='normal' )
         Card(:bordered="false" shadow)
             p(slot='title') 求职意向
-            p(v-test='') 期望职位: 前端工程师
+            p 期望职位: 前端工程师
             p 工作技能: Vue
             p 目标城市: 成都
             p 入职时间: 随时入职
@@ -44,9 +45,21 @@
 </template>
 
 <script>
+import _ from "lodash";
+import myButton from "@/components/common/button";
 export default {
+  components: {
+    myButton
+  },
   data() {
-    return {};
+    return {
+      arr: [
+        { name: "hsl", age: 12 },
+        { name: "lqc", age: 21 },
+        { name: "zy", age: 89 }
+      ],
+      arr1: [1, 2, 3]
+    };
   },
   computed: {
     username() {
@@ -54,9 +67,16 @@ export default {
     }
   },
   mounted() {
+    _.each(this.arr, item => {
+      item.name = "hsl";
+    });
+    _.each(this.arr1, item => {
+      item = item++;
+    });
+    // console.log(this.arr);
+    // console.log(this.arr1);
   },
-  methods: {
-  }
+  methods: {}
 };
 </script>
 

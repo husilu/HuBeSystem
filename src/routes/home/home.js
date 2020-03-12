@@ -59,6 +59,12 @@ export default [{
       name: 'test-page'
     },
     {
+      path: '/map-page',
+      component: () => import('@/components/map-page/baidu-map-page'),
+      meta: { title: '百度地图' },
+      name: 'baidu-map-page'
+    },
+    {
       path: '/xxzx',
       meta: { title: '学习中心' },
       name: 'xxzx',
@@ -83,6 +89,12 @@ export default [{
           meta: { title: '书籍收集' }
         }
       ]
+    },
+    {
+      path: 'chart',
+      component: () => import('@/components/chart/main'),
+      name: 'chart',
+      meta: { title: '图表' }
     }
   ]
 }];
