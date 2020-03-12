@@ -1,9 +1,19 @@
 <template lang="pug">
+<<<<<<< HEAD
   Modal.xxgl-nrgl-qr(v-model='visible' :title='title' ok-text='下载' @on-cancel='cancelHandler' @on-ok='okHandler')
     canvas(id="canvas" width="300" height="300" v-hsl-code:[codedata]='')
     a(:href='downloadUrl' download = 'test' id='link')
     //-   Button(type='primary' @click='okHandler') 下载
     //- Button(type='default' @click='cancelHandler') 取消
+=======
+  Modal.xxgl-nrgl-qr(v-model='visible' :title='title')
+    canvas(id="canvas" width="300" height="300" v-hsl-code:[codedata]='' v-if='visible')
+    //- span {{codedata}}
+    //- canvas(id="imgcanvas" style="display:none")
+    div(slot='footer')
+      a.mr1(@click='okHandler' :href='downloadUrl' download='code') 下载
+      Button(type='default' @click='cancelHandler') 取消
+>>>>>>> c55787a82fa67ea23628bef3aaedfb351dc4b8cc
 </template>
 
 <script>
@@ -26,6 +36,8 @@ export default {
       codedata: {}
     };
   },
+  watch: {
+  },
   methods: {
     show(row) {
       this.visible = true;
@@ -34,6 +46,7 @@ export default {
     okHandler() {
       let wrapCanvas = convertCanvasToImage(document.getElementById("canvas"));
       this.downloadUrl = wrapCanvas.getAttribute("src");
+<<<<<<< HEAD
       let link = document.getElementById("link");
       this.$nextTick(() => {
         link.click();
@@ -47,6 +60,14 @@ export default {
       // imgcxt.clearRect(0, 0, img.width, img.height);
       // cxt.clearRect(0, 0, can.width, can.height);
       // this.visible = false;
+=======
+      // console.log(this.downloadUrl);
+      // document.getElementById('link').click();
+      // window.location.href = this.downloadUrl;
+    },
+    cancelHandler() {
+      this.visible = false;
+>>>>>>> c55787a82fa67ea23628bef3aaedfb351dc4b8cc
     }
     // getImgCode() {
     //   var imgCanvas = document.getElementById("imgcanvas");
@@ -89,6 +110,9 @@ export default {
     .ivu-modal-body {
       text-align: center;
     }
+  }
+  .mr1 {
+    margin-right: 5px;
   }
 }
 </style>

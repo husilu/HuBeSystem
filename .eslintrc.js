@@ -36,6 +36,16 @@ module.exports = {
         "allowFirstLine": false
       }
     }],
+    "vue/html-quotes": 0,
+    "vue/html-self-closing": ["error", {
+      "html": {
+        "void": "never",
+        "normal": "never",
+        "component": "never"
+      },
+      "svg": "always",
+      "math": "always"
+    }],
     "quotes": [0, ["double"]]
   }
 };

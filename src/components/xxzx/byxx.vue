@@ -17,7 +17,9 @@ export default {
   components: { Ht, Js },
   data() {
     return {
-      val: "Html/Css"
+      val: "Html/Css",
+      text: "测试",
+      obj: {}
     };
   },
   computed: {
@@ -25,9 +27,26 @@ export default {
       let Nowdate = new Date();
       return Nowdate.getMonth() + 1;
     }
+  },
+  beforeCreate() {
+    // console.log("beforeCreated");
+  },
+  created() {
+    // console.log("created");
+    // debugger;
+    this.obj = {
+      res: {
+        name: "rose"
+      }
+    };
   }
-  // mounted() {
-  //   console.log("compmounted");
+  // watch: {
+  //   text: {
+  //     handler: val => {
+  //       console.log(val);
+  //     },
+  //     immediate: true
+  //   }
   // }
 };
 </script>

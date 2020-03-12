@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     okHandler() {
-      // let url = "http://localhost:8880/login";
+      // let url = "http://localhost:8082/login";
       let obj = {
         username: this.model.username,
         password: this.model.password
@@ -54,8 +54,8 @@ export default {
           //   password: this.model.password
           // };
           api.login(obj).then(res => {
-            if (res.data.code === 0) {
-              localStorage.setItem("ms_user", res.data.data.userName);
+            if (res.code === 0) {
+              localStorage.setItem("ms_user", res.data.userName);
               this.$router.push("/");
             } else {
               this.$Message.info(res.data.message);

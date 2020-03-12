@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template lang="html">
   <div>
     <!-- <video src="http://221.10.172.117:7086/live/cameraid/1000006%240/substream/1.m3u8" width="300" height="400">
@@ -69,8 +70,40 @@ export default {
       this.$refs.edit.openModal();
     }
   }
+=======
+<template lang="pug">
+  div(class='fwgk-wrap') 服务概况
+    div(class='line-wrap')
+</template>
+
+<script>
+import edit from "./edit";
+// import { mapGetters } from "vuex";
+// import { GETTER_COLUMNS } from "store/fwgk/index";
+export default {
+  components: { edit },
+  computed: {},
+  mounted() {},
+  methods: {}
+>>>>>>> c55787a82fa67ea23628bef3aaedfb351dc4b8cc
 };
 </script>
 
 <style lang="less">
+.fwgk-wrap {
+  .line {
+    display: inline-block;
+    width: 43px;
+    height: 1px;
+    background: red;
+    transform: rotate(135deg);
+  }
+  .line-wrap {
+    border-style: solid;
+    border-width: 0px 0px 100px 100px;
+    border-color: transparent transparent blue transparent;
+    width: 0px;
+    height: 0px;
+  }
+}
 </style>

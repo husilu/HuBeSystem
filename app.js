@@ -57,13 +57,28 @@ http.createServer(function (req, res) {
     req.addListener("end", function () {
 
       var result = JSON.stringify(qs.parse(tempResult));
-      console.log("\n参数为：");
-      console.log(result);
 
-      if (pathName == "/sendMessage") { // 提交留言信息
+      if (pathName == "/add_nrgl") { // 新增
 
-        console.log("\n【API - 提交留言信息】");
-
+        result = JSON.parse(result);
+        let name = result.name; //
+        let sex = result.sex; //
+        let age = result.age; //
+        let address = result.address; //
+        let url = result.url;
+        let addSql = 'INSERT INTO nrgl_table(name,sex,age,address,url) VALUES(?,?,?,?,?)';
+        let addSqlParams = [name, sex, age, address, url];
+        connection.query(addSql, addSqlParams, function (error1, response1) {
+          if (error1) {
+            throw error1;
+          } else {
+            res.write(JSON.stringify({
+              code: "0",
+              message: "success"
+            }));
+            res.end();
+          }
+        });
       } else if (pathName == "/login") { // 登录
 
         console.log("\n【API - 登录】");
@@ -116,10 +131,30 @@ http.createServer(function (req, res) {
             // 存在用户处理结束
           }
         });
-      } else if (pathName == "/register") { // 注册
+      } else if (pathName == "/edit_nrgl") { // 编辑
 
-        console.log("\n【API - 注册】");
+        console.log("\n【API - 编辑内容管理】");
 
+        result = JSON.parse(result);
+        let id = Number(result.id); // id
+        let name = result.name;
+        let age = result.age;
+        let url = result.url;
+        let address = result.address;
+        let sex = result.sex;
+        let modSql = 'UPDATE nrgl_table SET name = ?,sex = ?, address = ?, url = ?, age = ? WHERE id = ?'
+        let modSqlParams = [name, sex, address, url, age, id];
+        connection.query(modSql, modSqlParams, function (error1, response1) {
+          if (error1) {
+            throw error1;
+          } else {
+            res.write(JSON.stringify({
+              code: 0,
+              message: "success"
+            }));
+            res.end();
+          }
+        });
       }
       // 接口信息处理完毕
     })
@@ -134,11 +169,91 @@ http.createServer(function (req, res) {
 
     console.log("\n接口为：" + pathName);
 
-    if (pathName == "/getMessage") { // 获取留言信息
+    if (pathName == "/js_study") { // 获取js学习信息
+      let readSql = "SELECT * FROM new_schema.Js_study_table";
+      connection.query(readSql, function (error1, response1) {
+        if (error1) {
+          throw error1;
+        } else {
+          let newRes = JSON.parse(JSON.stringify(response1));
+          console.log(newRes);
+          res.write(JSON.stringify({
+            code: 0,
+            message: "success",
+            data: newRes
+          }));
+          res.end();
+        }
+      });
 
-      console.log("\n【API - 获取留言信息】");
-
-    } else if (pathName == "/") { // 首页
+    } else if (pathName == "/ht_study") { // 获取html学习信息
+      let readSql = "SELECT * FROM new_schema.html_study_table";
+      connection.query(readSql, function (error1, response1) {
+        if (error1) {
+          throw error1;
+        } else {
+          let newRes = JSON.parse(JSON.stringify(response1));
+          console.log(newRes);
+          res.write(JSON.stringify({
+            code: 0,
+            message: "success",
+            data: newRes
+          }));
+          res.end();
+        }
+      });
+    } else if (pathName == "/search_nrgl") { // 获取内容管理
+      let readSql = "SELECT * FROM new_schema.nrgl_table";
+      connection.query(readSql, function (error1, response1) {
+        if (error1) {
+          throw error1;
+        } else {
+          let newRes = JSON.parse(JSON.stringify(response1));
+          console.log(newRes);
+          res.write(JSON.stringify({
+            code: 0,
+            message: "success",
+            data: newRes
+          }));
+          res.end();
+        }
+      });
+    } else if (pathName == "/search_nrglid/") {
+      let params = url.parse(req.url, true).query;
+      let id = params.id;
+      let readSql = "SELECT * FROM new_schema.nrgl_table WHERE id = '" + id + "'";
+      connection.query(readSql, function (error1, response1) {
+        if (error1) {
+          throw error1;
+        } else {
+          let newRes = JSON.parse(JSON.stringify(response1));
+          res.write(JSON.stringify({
+            code: 0,
+            message: "success",
+            data: newRes
+          }));
+          res.end();
+        }
+      });
+    } else if (pathName == "/delete_nrgl/") { // 删除内容管理
+      let params = url.parse(req.url, true).query;
+      let id = params.id;
+      let delSql = 'DELETE FROM nrgl_table where id= ' + id;
+      connection.query(delSql, function (error1, response1) {
+        if (error1) {
+          throw error1;
+        } else {
+          let newRes = JSON.parse(JSON.stringify(response1));
+          res.write(JSON.stringify({
+            code: 0,
+            message: "success",
+            data: newRes
+          }));
+          res.end();
+        }
+      });
+    }
+    else if (pathName == "/") { // 首页
       res.writeHead(200, {
         "Content-Type": "text/html;charset=UTF-8"
       });
@@ -150,7 +265,7 @@ http.createServer(function (req, res) {
 
   }
 
-}).listen(8888); // 监听的端口
+}).listen(8082); // 监听的端口
 
 // 获取当前时间
 function getNowFormatDate() {

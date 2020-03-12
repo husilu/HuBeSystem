@@ -5,7 +5,9 @@
         Card.mb20(:bordered="false" shadow v-cpt-drag='')
           div(class='flex')
             img(src='@/assets/timg.jpeg' class='user-pic')
-            span {{username}}
+            div
+              h2 {{username}}
+              p.notice 时刻谨记 定期做review，提高代码质量，学会总结。
         Card.mb20(:bordered="false" shadow)
             p(slot='title') 语言详情
               my-button(type='primary' msg="下载")
@@ -41,12 +43,14 @@
           p(class='exp-com') 云和恩墨有限公司
           p(class='exp-pro') 项目名称: Z-Data后台管理系统
           p 主要用Vue全家桶，熟悉Vue组件写法，mock数据，Echarts在Vue中的使用，Git的使用，前端Review，敏捷开发体系。虽然说公司氛围很好，但是前端框架还很凌乱，需要封装的地方还很多。导致开发很费时。
-
+          p(class='exp-time') 2019.2.27 - ....
+          p(class='exp-com') 四川开普顿有限公司
+          p(class='exp-pro') 项目名称: 社会化服务系统
+          p 主要负责后台系统，该项目封装的很好，感觉让我突破了Vue的瓶颈期，加油...只要你开始，就不会晚。（待续）
 </template>
 
 <script>
-import _ from "lodash";
-import myButton from "@/components/common/button";
+import api from "@/api/byxx";
 export default {
   components: {
     myButton
@@ -67,21 +71,24 @@ export default {
     }
   },
   mounted() {
-    _.each(this.arr, item => {
-      item.name = "hsl";
-    });
-    _.each(this.arr1, item => {
-      item = item++;
-    });
-    // console.log(this.arr);
-    // console.log(this.arr1);
+    this.search();
   },
-  methods: {}
+  methods: {
+    search() {
+      api.banner().then(res => {
+        console.log(res);
+      });
+    }
+  }
 };
 </script>
 
 <style lang="less">
 .dashboard {
+  .notice {
+    color: #bf5159;
+    font-weight: bold;
+  }
   .user-pic {
     width: 120px;
     height: 120px;

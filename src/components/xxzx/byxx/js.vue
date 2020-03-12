@@ -1,6 +1,6 @@
 <template lang="pug">
 	div.js-com
-		p(v-for="item in list") {{item.content}}
+		p(v-for="item in list") {{item.id}} : {{item.content}}
 </template>
 <script>
 import api from "@/api/byxx";
@@ -18,6 +18,7 @@ export default {
     search() {
       api.jssearch().then(res => {
         this.list = res.data;
+        // console.log(this.list);
       });
     }
   }
