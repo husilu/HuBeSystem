@@ -3,12 +3,8 @@ import axios from 'axios';
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 
 const instance = axios.create({
-<<<<<<< HEAD
   baseURL: process.env.NODE_ENV === 'development' ? process.env.BASE_API : ''
   // baseURL: ''
-=======
-  baseURL: ''
->>>>>>> 5a0936b1922068a6fe6ef9df4b4f5266487399f5
 });
 
 instance.interceptors.request.use((config) => {
