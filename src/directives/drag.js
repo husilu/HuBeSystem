@@ -19,7 +19,6 @@ class Drag {
   bindEvents() {
     const el = this.target;
     this.handler.addEventListener('mousedown', ev => {
-      console.log(ev);
       if (ev.which === 1) {
         this.isDraging = true;
         this.elx = ev.pageX - el.offsetLeft; // pageX以页面左上角开始 offsetLeft获取当前元素边缘尺寸
@@ -60,7 +59,6 @@ export default {
   name: 'cpt-drag',
   directive: {
     bind(el, { value }) {
-      // console.log(value);
       el._dragInstance = new Drag(el, value || {});
     }
     // unbind(el) {

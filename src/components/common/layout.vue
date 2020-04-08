@@ -104,12 +104,6 @@ export default {
     vertical-align: bottom;
     transition: width 0.2s ease 0.2s;
   }
-  // .menu-item i{
-  //     transform: translateX(0px);
-  //     transition: font-size .2s ease, transform .2s ease;
-  //     vertical-align: middle;
-  //     font-size: 16px;
-  // }
   .collapsed-menu span {
     width: 0px;
     transition: width 0.2s ease;

@@ -47,5 +47,15 @@
     "index": "/test-page", 
     "title": "测试页面",
     "icon": "ios-bug-outline"
+  },
+  {
+    "index": "/map-page", 
+    "title": "谷歌地图",
+    "icon": "ios-bug-outline"
+  },
+  {
+    "index": "/chart", 
+    "title": "图表",
+    "icon": "ios-bug-outline"
   }
 ]

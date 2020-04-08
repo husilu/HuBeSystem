@@ -28,8 +28,8 @@ class Code {
         ctx.drawImage(image, 50, 110, 168, 168);
       };
     }
-    ctx.fillStyle = "#000";
     ctx.font = "16px Arial";
+    ctx.fillStyle = "#000";
     let x = 10;
     let y = 20;
     Object.keys(this.obj).forEach(key => {
@@ -41,6 +41,9 @@ class Code {
   }
   destory() {
     this.el._codeInstance = {};
+  }
+  clearCanvas() {
+    this.ctx.clearRect(0, 0, this.imgObj.width, this.imgObj.height);
   }
 }
 
@@ -59,6 +62,7 @@ export default {
     update(el, binding, vnode) {
       if (binding.arg) {
         el._codeInstance = new Code(el, binding.arg || {});
+        // console.log(el);
       }
     }
   }

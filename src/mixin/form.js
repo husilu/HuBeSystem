@@ -1,7 +1,8 @@
 // import { FORM_STATUS } from '@/utils/consts';
 // import _ from 'lodash';
-export default (opt = {
-  ref: 'form'
-}) => ({
-  opt
+export default (shuju) => ({
+  created() {
+    console.log('mixin...');
+    this.shuju = shuju;
+  }
 });

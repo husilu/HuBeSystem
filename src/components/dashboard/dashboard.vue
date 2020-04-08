@@ -10,6 +10,7 @@
               p.notice 时刻谨记 定期做review，提高代码质量，学会总结。
         Card.mb20(:bordered="false" shadow)
             p(slot='title') 语言详情
+              my-button(type='primary' msg="下载")
             p
               span Vue
               Progress(:percent="70" status='normal' stroke-color='rgb(66, 185, 131)')
@@ -51,8 +52,18 @@
 <script>
 import api from "@/api/byxx";
 export default {
+  components: {
+    myButton
+  },
   data() {
-    return {};
+    return {
+      arr: [
+        { name: "hsl", age: 12 },
+        { name: "lqc", age: 21 },
+        { name: "zy", age: 89 }
+      ],
+      arr1: [1, 2, 3]
+    };
   },
   computed: {
     username() {
