@@ -1,109 +1,97 @@
-<<<<<<< HEAD
-<template lang="html">
-  <div>
-    <!-- <video src="http://221.10.172.117:7086/live/cameraid/1000006%240/substream/1.m3u8" width="300" height="400">
-    </video> -->
-    <!-- <myvideo></myvideo>
-     -->
-    <video ref="videoRef" width="400" controls></video>
-    <child1></child1>
-    <child2></child2>
-    <ztgg></ztgg>
-    <span>服务概况视频显示</span>
+<template>
+  <div id="virtualList" class="virtualList" @scroll="handleScroll">      
+    <div class="list-view-content" :style="{paddingTop:startOffset + 'px',paddingBottom:endOffset+'px'}">
+      <div class="list-view-item" v-for="(item,index) in visibleList" :key="index">
+        <div class="col">{{ item.name }}</div>
+        <div class="col">{{ item.value }}</div>
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
-import Hls from "hls.js";
-import myvideo from "./myvideo";
-import edit from "./edit";
-import { mapGetters } from "vuex";
-import { GETTER_COLUMNS } from "store/fwgk/index";
-// import _ from "lodash";
-let components = [];
-let componentsObj = {};
-// 动态引入router 遍历该文件夹下所有的非index.js文件
-const contexts = require.context("./", false, /\.vue$/); // 返回的是一个函数 并且该函数有3个方法
-contexts.keys().forEach(key => {
-  // keys返回匹配成功模块的名字组成的数组
-  // console.log(key);
-  if (key !== "./main.vue") {
-    components.push(contexts(key).default);
-  }
-});
-components.forEach(key => {
-  if (key.__file) {
-    let name = key.__file.replace(/(.*\/)*([^.]+).*/gi, "$2");
-    componentsObj[name] = key;
-  }
-});
 export default {
-  components: { edit, myvideo, ...componentsObj },
-  computed: {
-    ...mapGetters({
-      columns: GETTER_COLUMNS
-    })
+  // name: "virtualList",
+  data() {
+    return {
+      list: [],
+      visibleList: [],
+      timer: null,
+      startTime: null,
+      startIndex: 0,
+      endIndex: 0,
+      startOffset: 0,
+      endOffset: 0,
+      listLength: 0
+    };
   },
-  mounted: function() {
-    var hls = new Hls();
-    hls.loadSource(
-      "http://221.10.172.117:7086/live/cameraid/1000006%240/substream/2.m3u8"
-    );
-    // let timer = setInterval(() => {
-    //   console.log("interval");
-    // }, 200);
-    // this.$once("hook:beforeDestory", () => {
-    //   clearInterval(timer);
-    // });
-    // hls.attachMedia(this.$refs.videoRef);
-    // hls.on(Hls.Events.MANIFEST_PARSED, function() {
-    //   this.$refs.videoRef.play();
-    // });
+  mounted() {
+    this.startTime = new Date().getTime();
+    for (let i = 0; i < 10000; i++) {
+      let obj = {};
+      obj["name"] = i;
+      obj["value"] = "test" + Math.random();
+      this.list.push(obj);
+    }
+    this.visibleCount = Math.ceil(1000 / 50);
+    this.endIndex = this.startOffset + this.visibleCount;
+    this.visibleList = this.list.slice(this.startOffset, this.endIndex);
+    this.endOffset = (this.visibleList.length - this.endIndex) * 50;
+    this.listLength = this.list.length;
   },
-  beforeDestroy() {
-    console.log("beforeDestroy");
-    // console.log(this.$refs.videoRef);
-    // this.$refs.videoRef.dispose();
+  updated: function() {
+    let lastTime = new Date().getTime();
+    console.log(lastTime - this.startTime);
   },
   methods: {
-    openModal() {
-      this.$refs.edit.openModal();
+    handleScroll: function() {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
+      var vm = this;
+      // this.timer = setTimeout(() => {
+        var contentDiv = document.getElementById("virtualList");
+        var scrollTop = contentDiv.scrollTop;
+        vm.startOffset = scrollTop;
+        vm.startIndex = Math.ceil(scrollTop / 50);
+        vm.endIndex = vm.startIndex + vm.visibleCount;
+        vm.visibleList = vm.list.slice(vm.startIndex, vm.endIndex);
+      // }, 400);
     }
   }
-=======
-<template lang="pug">
-  div(class='fwgk-wrap') 服务概况
-    div(class='line-wrap')
-</template>
-
-<script>
-import edit from "./edit";
-// import { mapGetters } from "vuex";
-// import { GETTER_COLUMNS } from "store/fwgk/index";
-export default {
-  components: { edit },
-  computed: {},
-  mounted() {},
-  methods: {}
->>>>>>> c55787a82fa67ea23628bef3aaedfb351dc4b8cc
 };
 </script>
 
-<style lang="less">
-.fwgk-wrap {
-  .line {
-    display: inline-block;
-    width: 43px;
-    height: 1px;
-    background: red;
-    transform: rotate(135deg);
-  }
-  .line-wrap {
-    border-style: solid;
-    border-width: 0px 0px 100px 100px;
-    border-color: transparent transparent blue transparent;
-    width: 0px;
-    height: 0px;
-  }
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+.virtualList {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.list-view-content {
+  min-height: 10px;
+  width: 100%;
+  /* height: 1000px; */
+}
+.list-view-item {
+  display: inlien-block;
+}
+.col {
+  display: inline-block;
+  margin-right: 200px;
 }
 </style>

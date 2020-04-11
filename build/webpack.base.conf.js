@@ -45,7 +45,6 @@ module.exports = {
     }
   },
   externals: {
-    'google': 'google',
     "BMap": "BMap"
   },
   module: {

@@ -21,6 +21,7 @@
 <script>
 import _ from "lodash";
 import api from "@/api/xxgl.js";
+import formMixin from '@/mixin/form';
 export default {
   name: "NrglEdit",
   mixins: [formMixin('我是数据')],
