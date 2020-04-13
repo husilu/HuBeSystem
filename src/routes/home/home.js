@@ -59,12 +59,6 @@ export default [{
       name: 'test-page'
     },
     {
-      path: '/map-page',
-      component: () => import('@/components/map-page/baidu-map-page'),
-      meta: { title: '百度地图' },
-      name: 'baidu-map-page'
-    },
-    {
       path: '/xxzx',
       meta: { title: '学习中心' },
       name: 'xxzx',

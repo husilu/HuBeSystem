@@ -58,7 +58,8 @@ export default {
               localStorage.setItem("ms_user", res.data.userName);
               this.$router.push("/");
             } else {
-              this.$Message.info(res.data.message);
+              console.log(res);
+              this.$Message.info(res.message);
             }
           });
         } else {

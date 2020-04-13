@@ -24,9 +24,6 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
-  externals: {
-    "BMap": "BMap"
-  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
@@ -43,10 +40,6 @@ module.exports = {
       storejs: resolve('node_modules/store'),
       'cpt-toolkit': resolve('cpt-toolkit')
     }
-  },
-  externals: {
-    'google': 'google',
-    "BMap": "BMap"
   },
   module: {
     rules: [
