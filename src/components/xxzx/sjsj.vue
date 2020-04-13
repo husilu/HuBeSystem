@@ -27,7 +27,7 @@ export default enhance({
     };
   },
   async mounted() {
-    let res = await this.search();
+    // let res = await this.search();
     await this.DataSearch();
     // console.log(this.pageParams);
   },

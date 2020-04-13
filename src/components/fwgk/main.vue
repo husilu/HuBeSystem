@@ -1,61 +1,67 @@
 <template>
-  <div id="virtualList" class="virtualList" @scroll="handleScroll">      
-    <div class="list-view-content" :style="{paddingTop:startOffset + 'px',paddingBottom:endOffset+'px'}">
-      <div class="list-view-item" v-for="(item,index) in visibleList" :key="index">
-        <div class="col">{{ item.name }}</div>
-        <div class="col">{{ item.value }}</div>
+  <div>
+    <div :style="`height:${viewH}px;overflow-y:scroll;`" @scroll="hanldeScroll">
+      <div :style="{height:scorllH}">
+        <div class="item_box" :style="`transform:translateY(${offSetY}px); `">
+          <div v-for="item in list" :key="item.id" class="item">{{ item.content }}</div>
+        </div>
+      </div>
+    </div>
+    <div class='container' style='height:50px;overflow-y:scroll;'>
+      <div style="height: 100px">
+        <div>
+          <div class='code'>1</div>
+          <div class='code'>2</div>
+          <div class='code'>3</div>
+          <div class='code'>4</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  // name: "virtualList",
   data() {
     return {
-      list: [],
-      visibleList: [],
-      timer: null,
-      startTime: null,
-      startIndex: 0,
-      endIndex: 0,
-      startOffset: 0,
-      endOffset: 0,
-      listLength: 0
+      lastTime: "", // 上次执行滚动事件的时刻
+      scorllH: "", // 列表总高度
+      list: [], // 展示列表
+      offSetY: "", // 动态偏移量
+      showNum: "", // 显示的个数
+      viewH: 500,
+      itemH: 20,
+      data: []
     };
   },
+
   mounted() {
-    this.startTime = new Date().getTime();
-    for (let i = 0; i < 10000; i++) {
-      let obj = {};
-      obj["name"] = i;
-      obj["value"] = "test" + Math.random();
-      this.list.push(obj);
+    for (let i = 0; i < 1000; i++) {
+      this.data.push({
+        id: i,
+        content: "内容" + i
+      });
     }
-    this.visibleCount = Math.ceil(1000 / 50);
-    this.endIndex = this.startOffset + this.visibleCount;
-    this.visibleList = this.list.slice(this.startOffset, this.endIndex);
-    this.endOffset = (this.visibleList.length - this.endIndex) * 50;
-    this.listLength = this.list.length;
-  },
-  updated: function() {
-    let lastTime = new Date().getTime();
-    console.log(lastTime - this.startTime);
+    // 计算总高度
+    this.scorllH = this.itemH * this.data.length + "px"; 
+    // 计算可视区域能展示的个数 这里可以随机多加几个让滚动有个临界区间，避免向下滑动时元素直接替换
+    this.showNum = this.viewH / this.itemH + 1;
+    this.lastTime = new Date().getTime();
+    // 默认展示
+    this.list = this.data.slice(0, this.showNum);
   },
   methods: {
-    handleScroll: function() {
-      if (this.timer) {
-        clearTimeout(this.timer);
+    hanldeScroll(e) {
+      // console.log(e.target.scrollTop); // 滚动条高度
+      //   节流滚动计算
+      if (new Date().getTime() - this.lastTime > 20) {
+        this.offSetY = e.target.scrollTop - (e.target.scrollTop % this.itemH); // 设置动态偏移量模拟滚动 
+        // this.offSetY = e.target.scrollTop
+        this.list = this.data.slice(
+          Math.floor(e.target.scrollTop / this.itemH),
+          Math.floor(e.target.scrollTop / this.itemH) + this.showNum
+        ); // 根据滚动条高度来截取需要展示的列表区间
+        this.lastTime = new Date().getTime();
       }
-      var vm = this;
-      // this.timer = setTimeout(() => {
-        var contentDiv = document.getElementById("virtualList");
-        var scrollTop = contentDiv.scrollTop;
-        vm.startOffset = scrollTop;
-        vm.startIndex = Math.ceil(scrollTop / 50);
-        vm.endIndex = vm.startIndex + vm.visibleCount;
-        vm.visibleList = vm.list.slice(vm.startIndex, vm.endIndex);
-      // }, 400);
     }
   }
 };
@@ -93,5 +99,11 @@ a {
 .col {
   display: inline-block;
   margin-right: 200px;
+}
+.item_box {
+  /* transition: ease-in 1s; */
+}
+.code {
+  height: 25px;
 }
 </style>
