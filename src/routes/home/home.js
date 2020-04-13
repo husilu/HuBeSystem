@@ -41,7 +41,7 @@ export default [{
       component: () => import('@/components/xxgl/main'),
       children: [{
         path: 'nrgl',
-        component: () => import('@/components/xxgl/nrgl'),
+        component: () => import('@/components/xxgl/nrgl.vue'),
         name: 'nrgl',
         meta: { title: '内容管理' }
       },

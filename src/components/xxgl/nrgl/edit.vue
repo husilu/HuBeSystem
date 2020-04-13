@@ -23,7 +23,7 @@ import _ from "lodash";
 import api from "@/api/xxgl.js";
 export default {
   name: "NrglEdit",
-  mixins: [formMixin('我是数据')],
+  // mixins: [formMixin('我是数据')],
   data() {
     return {
       visible: false,

@@ -1,4 +1,4 @@
-import { BASEURL, ENV } from './consts';
+import { ENV } from './consts';
 import _ from 'lodash';
 // import storages from 'storejs/storages/all';
 // import storeEngine from 'storejs/src/store-engine';
@@ -50,17 +50,17 @@ export const downloadByIframe = src => {
 /**
  * 下载文件
  */
-export const download = ({ path, fileName, mime }) => {
-  const url = mapRootUrl('ags-system-setting/fastdfs/download/file');
-  let downloadUrl = `${url}?filePath=${encodeURIComponent(path)}`;
-  if (fileName) {
-    downloadUrl += `&fileName=${encodeURIComponent(fileName)}`;
-  }
-  if (mime) {
-    downloadUrl += `&mime=${encodeURIComponent(mime)}`;
-  }
-  downloadByIframe(downloadUrl);
-};
+// export const download = ({ path, fileName, mime }) => {
+//   const url = mapRootUrl('ags-system-setting/fastdfs/download/file');
+//   let downloadUrl = `${url}?filePath=${encodeURIComponent(path)}`;
+//   if (fileName) {
+//     downloadUrl += `&fileName=${encodeURIComponent(fileName)}`;
+//   }
+//   if (mime) {
+//     downloadUrl += `&mime=${encodeURIComponent(mime)}`;
+//   }
+//   downloadByIframe(downloadUrl);
+// };
 
 /**
  * 触发window resize事件
@@ -149,9 +149,9 @@ export const joinUrl = (...args) => {
  * 将url映射为接口对应的地址
  * @param {...String} args
  */
-export const mapRootUrl = (...args) => {
-  return joinUrl(BASEURL, ...args);
-};
+// export const mapRootUrl = (...args) => {
+//   return joinUrl(BASEURL, ...args);
+// };
 
 /**
  * 获取 webpack 环境变量配置

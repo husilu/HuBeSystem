@@ -1,4 +1,4 @@
-import { joinUrl, getProcessEnv } from './common';
+import { getProcessEnv } from './common';
 
 export const ENV = getProcessEnv();
 // 表单状态
@@ -16,18 +16,18 @@ export const FORM_STATUS = {
   }
 };
 export const PAGE_SIZE = 20;
-export const BASEURL =
-  window.config.baseUrl ||
-  joinUrl(ENV.CROSS ? `http://${ENV.HOST}:${ENV.PORT}/` : '/', ENV.ROOT);
-export const ZONELEVELNAMES = {
-  7: '国家',
-  6: '省',
-  5: '市',
-  4: '县',
-  3: '镇',
-  2: '村',
-  1: '组'
-};
+// export const BASEURL =
+//   window.config.baseUrl ||
+//   joinUrl(ENV.CROSS ? `http://${ENV.HOST}:${ENV.PORT}/` : '/', ENV.ROOT);
+// export const ZONELEVELNAMES = {
+//   7: '国家',
+//   6: '省',
+//   5: '市',
+//   4: '县',
+//   3: '镇',
+//   2: '村',
+//   1: '组'
+// };
 // 接口返回结果类型
 export const RESULTTYPE = {
   // 正常
