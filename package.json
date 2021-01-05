@@ -13,7 +13,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "eslint-plugin-prettier": "^3.1.0",
     "iview": "^3.4.2",
     "lodash": "^4.17.11",
